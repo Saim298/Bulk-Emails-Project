@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>Email Sender</title>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="text-center">Email Sender</h1>
+            </div>
+            <div class="card-body col-md-12">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="csvFile">Choose CSV File:</label>
+                        <input type="file" class="form-control-file" name="csvFile" id="csvFile" accept=".csv" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" name="title" id="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" class="form-control" name="description" id="description" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Emails</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification container -->
+    <div id="notification" class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+        <!-- Notification will be displayed here -->
+    </div>
+
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // JavaScript code for handling notifications
+        function showNotification(message) {
+            var notificationDiv = document.getElementById('notification');
+            notificationDiv.innerHTML = '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">' +
+                '<div class="toast-header">' +
+                '<strong class="me-auto">Email Sent</strong>' +
+                '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>' +
+                '</div>' +
+                '<div class="toast-body">' + message + '</div>' +
+                '</div>';
+
+            // Bootstrap Toast initialization
+            var toast = new bootstrap.Toast(notificationDiv.firstChild);
+            toast.show();
+        }
+    </script>
+</body>
+</html>
